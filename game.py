@@ -64,7 +64,7 @@ def show_score(x,y):
 
 def game_over_text():
     over_text = font.render("GAME OVER",True,(255,255,255))
-    screen.blit(over_text,(350,250))
+    screen.blit(over_text,(320,250))
 
 def enemy(x,y,i):
     screen.blit(enemyImage[i],(x,y))
@@ -166,7 +166,7 @@ while running:
 
 
     #bullet movement 
-    if bulletY <=0:
+    if bulletY <=10:
         bulletY=480
         bullet_state="ready"
 
