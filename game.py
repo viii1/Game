@@ -35,7 +35,7 @@ for i in range(num_of_enemies):
     enemyX.append(random.randint(0,736))
     enemyY.append(random.randint(10,150))
     enemyX_change.append(2)
-    enemyY_change.append(3)
+    enemyY_change.append(30)
 
 #bullet
 #In ready state you cannot see the bullet
@@ -54,9 +54,17 @@ font = pygame.font.Font('freesansbold.ttf',25)
 textX=10
 textY=10
 
+#Game over text
+over_font = pygame.font.Font('freesansbold.ttf',100)
+
+
 def show_score(x,y):
     score=font.render("SCORE:" + str(score_value),True,(255,255,255))
     screen.blit(score,(x,y))
+
+def game_over_text():
+    over_text = font.render("GAME OVER",True,(255,255,255))
+    screen.blit(over_text,(350,250))
 
 def enemy(x,y,i):
     screen.blit(enemyImage[i],(x,y))
@@ -123,6 +131,14 @@ while running:
 
     #enemy function
     for i in range(num_of_enemies):
+
+        #game over
+        if enemyY[i]>440:
+            for j in range(num_of_enemies):
+                enemyY[j] = 2000
+            game_over_text()
+            break
+
         enemyX[i] +=enemyX_change[i]
         if enemyX[i]<=0:
             enemyX_change[i] =2
